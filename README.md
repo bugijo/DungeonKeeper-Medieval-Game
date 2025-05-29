@@ -1,4 +1,4 @@
-# DungeonKeeper Medieval Game
+# Dungeon Keeper - Medieval Game
 
 Um jogo de RPG com sistemas modulares e extensíveis para personagens, combate, inventário e magia.
 
@@ -42,7 +42,7 @@ src/
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/bugijo/DungeonKeeper-Medieval-Game.git
+git clone https://github.com/bugijo/dungeon-keeper.git
 ```
 
 2. Instale as dependências:
@@ -55,28 +55,42 @@ pip install -r requirements.txt
 pytest
 ```
 
-## Frontend Medieval
+## Uso
 
-O projeto inclui uma interface web completa com temática medieval:
+### Exemplo básico de personagem:
 
-- **Interface Medieval**: Design com texturas de madeira e pedra
-- **Ícones SVG**: Ícones temáticos (espada, escudo, moedas, gemas)
-- **Sistema de Recursos**: Ouro, diamantes e gemas
-- **Páginas Completas**: Home, inventário, missões, loja, criações
-- **Configurações**: Página completa de configurações com múltiplas seções
+```python
+from src.systems.character.character import Character
+from src.systems.character.attributes import Attributes
 
-### Executar o Servidor Web
+# Criar um personagem
+attributes = Attributes(strength=15, dexterity=14, constitution=13)
+character = Character("Aragorn", attributes)
 
-```bash
-node server.js
+# Subir de nível
+character.gain_experience(1000)
+print(f"Nível: {character.level}")
 ```
 
-Acesse: http://localhost:8080
+### Exemplo de combate:
+
+```python
+from src.systems.combat.combat_state import CombatState
+from src.systems.combat.actions import AttackAction
+
+# Iniciar combate
+combat = CombatState([character1, character2])
+combat.start_combat()
+
+# Executar ação
+action = AttackAction(character1, character2)
+combat.execute_action(action)
+```
 
 ## Contribuição
 
-Veja [CONTRIBUTING.md](CONTRIBUTING.md) para diretrizes de contribuição.
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes sobre como contribuir.
 
 ## Licença
 
-Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
